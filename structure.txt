@@ -1,0 +1,107 @@
+Folder PATH listing
+Volume serial number is 3A74-A676
+C:.
+³   index.html
+³   structure.txt
+³   
+ÀÄÄÄassets
+    ÃÄÄÄdashboard
+    ³   ³   about.PNG
+    ³   ³   overview_1.PNG
+    ³   ³   overview_2.PNG
+    ³   ³   overview_3.PNG
+    ³   ³   user_manual.PNG
+    ³   ³   
+    ³   ÃÄÄÄanalytics
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       3.PNG
+    ³   ³       4.PNG
+    ³   ³       
+    ³   ÃÄÄÄbackup_restore
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄbranches
+    ³   ³       1.PNG
+    ³   ³       
+    ³   ÃÄÄÄcategoreis
+    ³   ³       1.PNG
+    ³   ³       
+    ³   ÃÄÄÄdebts
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       3.PNG
+    ³   ³       
+    ³   ÃÄÄÄexpenses
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄlogs
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄmedicines
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄpricing_engine
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       3.PNG
+    ³   ³       edit_prices.PNG
+    ³   ³       
+    ³   ÃÄÄÄpurchases
+    ³   ³       1.PNG
+    ³   ³       error.PNG
+    ³   ³       
+    ³   ÃÄÄÄreports
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄsalaries
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       3.PNG
+    ³   ³       
+    ³   ÃÄÄÄsettings
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       3.PNG
+    ³   ³       4.PNG
+    ³   ³       settings_bug.PNG
+    ³   ³       
+    ³   ÃÄÄÄshifts
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄstocktaking
+    ³   ³       1.PNG
+    ³   ³       2.PNG
+    ³   ³       
+    ³   ÃÄÄÄsuppliers
+    ³   ³       1.PNG
+    ³   ³       
+    ³   ÀÄÄÄusers
+    ³           1.PNG
+    ³           
+    ÀÄÄÄpos
+            add_expense.PNG
+            add_withdraw.PNG
+            auto_print_bill.PNG
+            bank_sale.PNG
+            cart_full.PNG
+            close_shift.PNG
+            confirm_pin.PNG
+            index.PNG
+            install.PNG
+            login.PNG
+            mobile_first_cart.PNG
+            mobile_first_sales.PNG
+            mobile_first_search.PNG
+            open_shift.PNG
+            pos_medicines_search.PNG
+            return_bill.PNG
+            Wifi_connect_manual.PNG
+            Wifi_connect_network.PNG
+            
