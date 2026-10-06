@@ -5,107 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام إدارة الصيدلية الذكي - MiraclePOS</title>
     <link rel="manifest" href="./manifest.json">
-    <link rel="icon" type="image/png" href="./icons/icon-192.png">
-    <meta name="theme-color" content="#059669">
-
-    <!-- الخطوط العربية - CDN مباشر -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome - CDN مباشر -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Tailwind CSS - CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./src/js/pages/index.js"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
+    (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+            history.replaceState(null, null, redirect);
         }
-    </script>
-
-    <!-- Gallery Styles -->
-    <style>
-        .gallery-item {
-            position: relative;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.2s;
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gallery-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: #10b981;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        .gallery-item .caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 12px 8px 6px;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .gallery-item-small {
-            position: relative;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.2s;
-            aspect-ratio: 1;
-        }
-        .gallery-item-small:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.15);
-            border-color: #10b981;
-            z-index: 10;
-        }
-        .gallery-item-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+    })();
+</script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-500 selection:text-white">
 
-    <!-- ============================================================
-         Navbar
-         ============================================================ -->
+    <!-- Navbar -->
     <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -116,22 +32,19 @@
             </div>
             <div class="hidden md:flex items-center space-x-8 space-x-reverse font-medium text-sm text-slate-600">
                 <a href="#features" class="hover:text-emerald-600 transition">المميزات</a>
-                <a href="#modules" class="hover:text-emerald-600 transition">الخصائص</a>
-                <a href="#pricing" class="hover:text-emerald-600 transition">الباقات</a>
-                <a href="#preview" class="hover:text-emerald-600 transition">معاينة النظام</a>
+                <a href="#modules" class="hover:text-emerald-600 transition">الخصائص الشاملة</a>
+                <!-- <a href="#pricing" class="hover:text-emerald-600 transition">الباقات الأسعار</a> -->
                 <a href="#testimonials" class="hover:text-emerald-600 transition">آراء العملاء</a>
+                
             </div>
             <div class="flex items-center gap-3">
-                <a href="#pricing" class="bg-emerald-600 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-600/20 transition-all active:scale-95">
-                    ابدأ مجاناً
-                </a>
+                <a href="login.html" class="text-xs md:text-sm font-bold text-slate-700 hover:text-emerald-600 px-4 py-2 transition">دخول المدير</a>
+                <a href="install.html" class="bg-emerald-600 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-emerald-700 shadow-lg shadow-emerald-600/20 transition-all active:scale-95">ابدأ مجاناً</a>
             </div>
         </div>
     </nav>
 
-    <!-- ============================================================
-         Hero Section
-         ============================================================ -->
+    <!-- Header / Hero Section -->
     <header class="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-slate-950 text-white py-24 lg:py-32 overflow-hidden">
         <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 left-10 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -147,7 +60,7 @@
                 نظام ERP متكامل يربط الفروع، الموردين، المخزون، نقاط البيع (POS)، ومتابعة ديون العملاء في لوحة تحكم واحدة فائقة السرعة وسهلة الاستخدام.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#pricing" class="w-full sm:w-auto bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl font-black text-base hover:bg-emerald-400 shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5">
+                <a href="install.html" class="w-full sm:w-auto bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl font-black text-base hover:bg-emerald-400 shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5">
                     ابدأ التجربة الآن <i class="fa-solid fa-arrow-left mr-2"></i>
                 </a>
                 <a href="#features" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 px-8 py-4 rounded-2xl font-bold text-base transition-all">
@@ -155,6 +68,7 @@
                 </a>
             </div>
 
+            <!-- Quick Metrics Grid -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16 pt-12 border-t border-emerald-800/40 text-center">
                 <div>
                     <div class="text-2xl sm:text-3xl font-black text-white font-mono">100%</div>
@@ -176,9 +90,7 @@
         </div>
     </header>
 
-    <!-- ============================================================
-         Core Features Section
-         ============================================================ -->
+    <!-- Core Features Section -->
     <section id="features" class="py-24 container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">لماذا تختار MiraclePOS؟</span>
@@ -213,9 +125,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         Extended Modules Section
-         ============================================================ -->
+    <!-- Extended Modules Section -->
     <section id="modules" class="py-24 bg-slate-100/70 border-y border-slate-200/60">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
@@ -276,304 +186,159 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         Pricing Section
-         ============================================================ -->
-    <section id="pricing" class="py-24 container mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">خطط الأسعار</span>
-            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">اختر الباقة المناسبة لحجم صيدليتك</h3>
-            <p class="text-slate-500 text-sm mt-2">أسعار واضحة وشفافة. كل باقة تشمل النظام الكامل مع خدمات إضافية.</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-
-            <!-- الباقة الأساسية -->
-            <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between relative hover:shadow-lg transition-all">
-                <div>
-                    <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 font-bold text-xs rounded-full mb-4">الباقة الأساسية</div>
-                    <h4 class="text-2xl font-black text-slate-900 mb-2">🥉 الأساسي</h4>
-                    <p class="text-slate-500 text-xs mb-6">مثالية للصيدليات الفردية التي تبدأ رحلتها الرقمية.</p>
-
-                    <div class="mb-6 pb-6 border-b border-slate-100">
-                        <span class="text-4xl font-black text-slate-900 font-mono">350,000</span>
-                        <span class="text-xs text-slate-500 block mt-1">جنيه سوداني — دفعة واحدة</span>
-                    </div>
-
-                    <ul class="space-y-3.5 text-sm text-slate-600 mb-8">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>زيارة وتركيب في صيدليتك</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تنزيل الأدوية بالصيدلية في النظام</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تدريب شخصي لك (ساعة)</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تدريب الموظفين (أسبوع كامل)</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>دليل استخدام كامل</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>دعم واتساب 60 يوم</span></li>
-                        <li class="flex items-start gap-3 bg-amber-50 -mx-2 px-2 py-2 rounded-lg border border-amber-100">
-                            <i class="fa-solid fa-shield-halved text-amber-600 mt-0.5"></i>
-                            <span class="text-amber-900 font-bold">ضمان استرداد 14 يوم</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9*%20%E2%80%94%20350%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
-                   target="_blank"
-                   class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-center font-bold py-3.5 rounded-xl transition-all text-sm inline-flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-emerald-600"></i>
-                    اختر الباقة الأساسية
-                </a>
-            </div>
-
-            <!-- الباقة الاحترافية -->
-            <div class="bg-emerald-900 text-white rounded-3xl p-8 shadow-xl border-2 border-emerald-500 flex flex-col justify-between relative transform lg:-translate-y-2">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md">
-                    ⭐ الأكثر طلباً
-                </div>
-
-                <div>
-                    <div class="inline-block px-3 py-1 bg-emerald-800 text-emerald-200 font-bold text-xs rounded-full mb-4">الباقة الاحترافية</div>
-                    <h4 class="text-2xl font-black mb-2">🥈 الاحترافي</h4>
-                    <p class="text-emerald-200 text-xs mb-6">الحل الكامل للصيدليات النشطة التي تحتاج نقل بياناتها ودعم أطول.</p>
-
-                    <div class="mb-6 pb-6 border-b border-emerald-800/80">
-                        <span class="text-4xl font-black font-mono">650,000</span>
-                        <span class="text-xs text-emerald-300 block mt-1">جنيه سوداني — دفعة واحدة</span>
-                    </div>
-
-                    <ul class="space-y-3.5 text-sm text-emerald-100 mb-8">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span class="font-semibold text-white">كل ميزات الباقة الأساسية</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>نقل بياناتك الحالية للنظام</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>تدريب الفريق كامل (ساعتين)</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>دعم 6 أشهر كاملة</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>نسخ احتياطي أسبوعي</span></li>
-                    </ul>
-                </div>
-
-                <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9*%20%E2%80%94%20650%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
-                   target="_blank"
-                   class="w-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-center font-black py-3.5 rounded-xl transition-all shadow-lg text-sm inline-flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    ابدأ الباقة الاحترافية الآن
-                </a>
-            </div>
-
-            <!-- الباقة الذهبية -->
-            <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between relative hover:shadow-lg transition-all">
-                <div>
-                    <div class="inline-block px-3 py-1 bg-purple-50 text-purple-700 font-bold text-xs rounded-full mb-4">باقة المؤسسات</div>
-                    <h4 class="text-2xl font-black text-slate-900 mb-2">🥇 الذهبي</h4>
-                    <p class="text-slate-500 text-xs mb-6">مخصصة لمجمعات الصيدليات وسلاسل الفروع الكبرى.</p>
-
-                    <div class="mb-6 pb-6 border-b border-slate-100">
-                        <span class="text-4xl font-black text-slate-900 font-mono">1,200,000</span>
-                        <span class="text-xs text-slate-500 block mt-1">جنيه سوداني — دفعة واحدة</span>
-                    </div>
-
-                    <ul class="space-y-3.5 text-sm text-slate-600 mb-8">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span class="font-semibold text-slate-900">كل ميزات الباقة الاحترافية</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>زيارات دورية كل 3 أشهر</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>صيانة سنة كاملة</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>استشارات شهرية</span></li>
-                        <li class="flex items-start gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 -mx-2 px-2 py-2 rounded-lg border border-amber-200">
-                            <i class="fa-solid fa-crown text-amber-600 mt-0.5"></i>
-                            <span class="text-amber-900 font-bold">شهادة "عميل مؤسس"</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A%D8%A9*%20%E2%80%94%201%2C200%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
-                   target="_blank"
-                   class="w-full bg-slate-900 hover:bg-slate-800 text-white text-center font-bold py-3.5 rounded-xl transition-all text-sm inline-flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                    تواصل معنا للمؤسسات
-                </a>
-            </div>
-
-        </div>
-
-        <!-- ما يشمله النظام -->
-        <div class="max-w-4xl mx-auto mt-16 bg-emerald-50 border border-emerald-100 rounded-2xl p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="p-2 bg-emerald-600 text-white rounded-xl">
-                    <i class="fa-solid fa-box-open"></i>
-                </div>
-                <div>
-                    <h4 class="text-lg font-black text-emerald-900">💎 النظام في كل العروض يشمل:</h4>
-                    <p class="text-xs text-emerald-700">لا فرق في جوهر النظام — الفرق في الخدمات المضافة</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>مخزون + مبيعات + ديون</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>تنبيهات صلاحية 30 يوم</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>بيع بدون إنترنت</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>الهاتف كباركود (بدون جهاز)</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>تقارير ربح لحظية</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>PIN للحماية</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>نسخ احتياطي تلقائي</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>دعم اللغة العربية</span></div>
-                <div class="flex items-center gap-2 text-sm text-emerald-900"><i class="fa-solid fa-check-circle text-emerald-600"></i><span>تحديثات مجانية</span></div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="flex items-center gap-2 text-sm text-emerald-800">
-                    <i class="fa-solid fa-headset"></i>
-                    <span>غير متأكد أيهما يناسبك؟</span>
-                </div>
-                <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%84%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9%20%D9%84%D8%B5%D9%8A%D8%AF%D9%84%D9%8A%D8%AA%D9%8A."
-                   target="_blank"
-                   class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl transition inline-flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    استشارة مجانية
-                </a>
-            </div>
-        </div>
-    </section>
-
         <!-- ============================================================
-         System Preview / Gallery Section
-         ============================================================ -->
-    <section id="preview" class="py-24 bg-white border-t border-slate-200/60">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">معاينة النظام</span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">شاهد النظام في الواقع</h3>
-                <p class="text-slate-500 text-sm mt-2">صور حقيقية من داخل النظام — كل شاشة تُظهر جانباً من قوة MiraclePOS.</p>
-            </div>
+     Pricing Section
+     ============================================================ -->
+<section id="pricing" class="py-24 container mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">خطط الأسعار</span>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">اختر الباقة المناسبة لحجم صيدليتك</h3>
+        <p class="text-slate-500 text-sm mt-2">أسعار واضحة وشفافة. كل باقة تشمل النظام الكامل مع خدمات إضافية.</p>
+        <p class="text-[11px] text-slate-400 mt-2">💱 الأسعار بالجنيه السوداني — سعر الصرف محدث تلقائياً</p>
+    </div>
 
-            <!-- Category Tabs -->
-            <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <button @click="activeCategory = 'dashboard'"
-                        :class="activeCategory === 'dashboard' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
-                        class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all">
-                    <i class="fa-solid fa-gauge-high"></i> لوحة التحكم
-                </button>
-                <button @click="activeCategory = 'pos'"
-                        :class="activeCategory === 'pos' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
-                        class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all">
-                    <i class="fa-solid fa-cash-register"></i> نقطة البيع
-                </button>
-                <button @click="activeCategory = 'all'"
-                        :class="activeCategory === 'all' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
-                        class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all">
-                    <i class="fa-solid fa-th-large"></i> الكل
-                </button>
-            </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
 
-            <!-- ============ Dashboard Section ============ -->
-            <div v-show="activeCategory === 'dashboard' || activeCategory === 'all'" class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="p-2 bg-blue-600 text-white rounded-xl">
-                        <i class="fa-solid fa-gauge-high"></i>
+        <!-- الباقة الأساسية -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between relative hover:shadow-lg transition-all">
+            <div>
+                <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 font-bold text-xs rounded-full mb-4">الباقة الأساسية</div>
+                <h4 class="text-2xl font-black text-slate-900 mb-2">🥉 الأساسي</h4>
+                <p class="text-slate-500 text-xs mb-6">مثالية للصيدليات الفردية التي تبدأ رحلتها الرقمية.</p>
+
+                <div class="mb-6 pb-6 border-b border-slate-100">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-black text-slate-900 font-mono">900,000</span>
+                        <span class="text-xs font-bold text-slate-500">ج.س</span>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-black text-slate-900">لوحة التحكم الإدارية</h4>
-                        <p class="text-xs text-slate-500">إدارة كاملة من مكان واحد</p>
-                    </div>
+                    <span class="text-xs text-slate-500 block mt-1">دفعة واحدة — تركيب وتدريب ودعم سنة</span>
+                    <span class="text-[10px] text-emerald-600 block mt-1 font-bold">≈ 112 دولار أمريكي</span>
                 </div>
 
-                <!-- Overview -->
-                <div class="mb-8">
-                    <h5 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-circle text-emerald-500 text-[8px]"></i>
-                        نظرة عامة
-                    </h5>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-                        <div @click="openImage('assets/dashboard/overview_1.png', 'نظرة عامة 1')" class="gallery-item">
-                            <img src="assets/dashboard/overview_1.png" alt="نظرة عامة 1" loading="lazy">
-                            <span class="caption">نظرة عامة 1</span>
-                        </div>
-                        <div @click="openImage('assets/dashboard/overview_2.png', 'نظرة عامة 2')" class="gallery-item">
-                            <img src="assets/dashboard/overview_2.png" alt="نظرة عامة 2" loading="lazy">
-                            <span class="caption">نظرة عامة 2</span>
-                        </div>
-                        <div @click="openImage('assets/dashboard/overview_3.png', 'نظرة عامة 3')" class="gallery-item">
-                            <img src="assets/dashboard/overview_3.png" alt="نظرة عامة 3" loading="lazy">
-                            <span class="caption">نظرة عامة 3</span>
-                        </div>
-                        <div @click="openImage('assets/dashboard/about.png', 'حول النظام')" class="gallery-item">
-                            <img src="assets/dashboard/about.png" alt="حول النظام" loading="lazy">
-                            <span class="caption">حول النظام</span>
-                        </div>
-                        <div @click="openImage('assets/dashboard/user_manual.png', 'دليل الاستخدام')" class="gallery-item">
-                            <img src="assets/dashboard/user_manual.png" alt="دليل الاستخدام" loading="lazy">
-                            <span class="caption">دليل الاستخدام</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sub-categories -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div v-for="cat in dashboardCategories" :key="cat.key" class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i :class="'fa-solid ' + cat.icon + ' text-' + cat.color + '-600'"></i>
-                            <h5 class="font-bold text-slate-800 text-sm">{{ cat.label }}</h5>
-                            <span class="mr-auto bg-white text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">
-                                {{ cat.images.length }}
-                            </span>
-                        </div>
-                        <div class="grid grid-cols-3 gap-2">
-                            <div v-for="(img, i) in cat.images" :key="i"
-                                 @click="openImage(img.path, img.label)"
-                                 class="gallery-item-small">
-                                <img :src="img.path" :alt="img.label" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ul class="space-y-3.5 text-sm text-slate-600 mb-8">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>زيارة وتركيب في صيدليتك</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تنزيل الأدوية بالصيدلية في النظام</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تدريب شخصي لك (ساعة)</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>تدريب الموظفين (أسبوع كامل)</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>دليل استخدام كامل</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>دعم واتساب 6 أشهر</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>استضافة سنة كاملة (Namecheap Stellar)</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>SSL + PWA (تشغيل بدون إنترنت)</span></li>
+                    <li class="flex items-start gap-3 bg-amber-50 -mx-2 px-2 py-2 rounded-lg border border-amber-100">
+                        <i class="fa-solid fa-shield-halved text-amber-600 mt-0.5"></i>
+                        <span class="text-amber-900 font-bold">ضمان استرداد 14 يوم</span>
+                    </li>
+                </ul>
             </div>
 
-            <!-- ============ POS Section ============ -->
-            <div v-show="activeCategory === 'pos' || activeCategory === 'all'" class="mb-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="p-2 bg-emerald-600 text-white rounded-xl">
-                        <i class="fa-solid fa-cash-register"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-black text-slate-900">نقطة البيع (POS)</h4>
-                        <p class="text-xs text-slate-500">واجهة البيع السريعة والاحترافية</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    <div v-for="img in posImages" :key="img.path"
-                         @click="openImage(img.path, img.label)"
-                         class="gallery-item">
-                        <img :src="img.path" :alt="img.label" loading="lazy">
-                        <span class="caption">{{ img.label }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="mt-16 text-center bg-gradient-to-br from-emerald-50 to-white rounded-3xl p-8 border border-emerald-100">
-                <h4 class="text-xl font-black text-slate-900 mb-2">أعجبك ما رأيت؟</h4>
-                <p class="text-slate-600 text-sm mb-6">احصل على النظام كاملاً مع التركيب والتدريب والدعم.</p>
-                <a href="#pricing" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all shadow-lg shadow-emerald-600/25">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    اطّلع على الباقات
-                </a>
-            </div>
+            <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9*%20%E2%80%94%20900%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
+               target="_blank"
+               class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-center font-bold py-3.5 rounded-xl transition-all text-sm inline-flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                اختر الباقة الأساسية
+            </a>
         </div>
 
-        <!-- Image Lightbox Modal -->
-        <div v-if="modalImage"
-             @click="modalImage = null"
-             class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 cursor-pointer"
-             style="animation: fadeIn 0.2s ease">
-            <button @click.stop="modalImage = null"
-                    class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center">
-                <i class="fa-solid fa-times"></i>
-            </button>
-            <div @click.stop class="max-w-6xl w-full max-h-[90vh] flex flex-col items-center">
-                <img :src="modalImage.path" :alt="modalImage.label"
-                     class="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl">
-                <p class="text-white/90 text-sm mt-4 font-bold">{{ modalImage.label }}</p>
+        <!-- الباقة الاحترافية -->
+        <div class="bg-emerald-900 text-white rounded-3xl p-8 shadow-xl border-2 border-emerald-500 flex flex-col justify-between relative transform lg:-translate-y-2">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md">
+                ⭐ الأكثر طلباً
             </div>
+
+            <div>
+                <div class="inline-block px-3 py-1 bg-emerald-800 text-emerald-200 font-bold text-xs rounded-full mb-4">الباقة الاحترافية</div>
+                <h4 class="text-2xl font-black mb-2">🥈 الاحترافي</h4>
+                <p class="text-emerald-200 text-xs mb-6">الحل الكامل للصيدليات النشطة التي تحتاج نقل بياناتها ودعم أطول.</p>
+
+                <div class="mb-6 pb-6 border-b border-emerald-800/80">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-black font-mono">1,500,000</span>
+                        <span class="text-xs font-bold text-emerald-300">ج.س</span>
+                    </div>
+                    <span class="text-xs text-emerald-300 block mt-1">دفعة واحدة — كل ميزات الأساسي + إضافات</span>
+                    <span class="text-[10px] text-emerald-400 block mt-1 font-bold">≈ 187 دولار أمريكي</span>
+                </div>
+
+                <ul class="space-y-3.5 text-sm text-emerald-100 mb-8">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span class="font-semibold text-white">كل ميزات الباقة الأساسية</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>نقل بياناتك الحالية للنظام</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>تدريب الفريق كامل (ساعتين)</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>دعم 12 شهراً كاملة</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>نسخ احتياطي أسبوعي تلقائي</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>استضافة سنة كاملة + SSL</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i><span>دومين مجاني (.com) لأول سنة</span></li>
+                </ul>
+            </div>
+
+            <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D8%A9*%20%E2%80%94%201%2C500%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
+               target="_blank"
+               class="w-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-center font-black py-3.5 rounded-xl transition-all shadow-lg text-sm inline-flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp"></i>
+                ابدأ الباقة الاحترافية الآن
+            </a>
+        </div>
+
+        <!-- الباقة الذهبية -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between relative hover:shadow-lg transition-all">
+            <div>
+                <div class="inline-block px-3 py-1 bg-purple-50 text-purple-700 font-bold text-xs rounded-full mb-4">باقة المؤسسات</div>
+                <h4 class="text-2xl font-black text-slate-900 mb-2">🥇 الذهبي</h4>
+                <p class="text-slate-500 text-xs mb-6">مخصصة لمجمعات الصيدليات وسلاسل الفروع الكبرى.</p>
+
+                <div class="mb-6 pb-6 border-b border-slate-100">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-black text-slate-900 font-mono">2,500,000</span>
+                        <span class="text-xs font-bold text-slate-500">ج.س</span>
+                    </div>
+                    <span class="text-xs text-slate-500 block mt-1">دفعة واحدة — للفروع المتعددة والمؤسسات</span>
+                    <span class="text-[10px] text-purple-600 block mt-1 font-bold">≈ 312 دولار أمريكي</span>
+                </div>
+
+                <ul class="space-y-3.5 text-sm text-slate-600 mb-8">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span class="font-semibold text-slate-900">كل ميزات الباقة الاحترافية</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>دعم 3 فروع (كل فرع إضافي منفصل)</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>زيارات دورية كل 3 أشهر</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>صيانة سنة كاملة</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>استشارات شهرية</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i><span>استضافة VPS بدل Shared</span></li>
+                    <li class="flex items-start gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 -mx-2 px-2 py-2 rounded-lg border border-amber-200">
+                        <i class="fa-solid fa-crown text-amber-600 mt-0.5"></i>
+                        <span class="text-amber-900 font-bold">شهادة "عميل مؤسس"</span>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="https://wa.me/249907722829?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%D8%8C%0A%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20*%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A%D8%A9*%20%E2%80%94%202%2C500%2C000%20%D8%AC%D9%86%D9%8A%D9%87%20%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A.%0A%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%8A%20%D9%84%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9."
+               target="_blank"
+               class="w-full bg-slate-900 hover:bg-slate-800 text-white text-center font-bold py-3.5 rounded-xl transition-all text-sm inline-flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                تواصل معنا للمؤسسات
+            </a>
+        </div>
+
+    </div>
+        <!-- ============================================================
+        Renewal Section
+        ============================================================ -->
+    <section class="py-12 container mx-auto px-6">
+        <div class="max-w-3xl mx-auto bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-3xl p-8 text-center">
+            <div class="inline-block p-3 bg-blue-100 text-blue-700 rounded-2xl mb-4">
+                <i class="fa-solid fa-rotate text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900 mb-2">التجديد السنوي</h3>
+            <p class="text-slate-600 text-sm mb-6">
+                يشمل: استضافة سنة كاملة + SSL + تحديثات + دعم فني.
+                <br>يُدفع عند التجديد — يمكن إيقافه في أي وقت.
+            </p>
+            <div class="inline-flex items-baseline gap-2 bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-200">
+                <span class="text-3xl font-black text-emerald-700 font-mono">700,000</span>
+                <span class="text-sm font-bold text-emerald-600">ج.س / سنة</span>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-2">≈ 88 دولار أمريكي</p>
         </div>
     </section>
 
-    <!-- ============================================================
-         Testimonials Section
-         ============================================================ -->
+    <!-- Testimonials Section -->
     <section id="testimonials" class="py-24 bg-slate-100/70 border-t border-slate-200/60">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
@@ -614,9 +379,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         Call to Action Banner
-         ============================================================ -->
+    <!-- Call to Action Banner -->
     <section class="py-20 bg-emerald-900 text-white relative overflow-hidden">
         <div class="container mx-auto px-6 text-center relative z-10 max-w-3xl">
             <h3 class="text-3xl sm:text-4xl font-black mb-6">جاهز لنقل صيدليتك إلى المستوى التالي؟</h3>
@@ -624,22 +387,19 @@
                 انضم إلى صُنع القرار المتميزين وقم بتحسين كفاءة صيدليتك اليوم. ابدأ الآن بتثبيت النظام وتحكم بجميع العمليات بكل سهولة.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#pricing" class="bg-white text-emerald-950 px-8 py-4 rounded-2xl font-bold text-base hover:bg-emerald-50 shadow-xl transition-all">
-                    اختر باقتك الآن
+                <a href="install.html" class="bg-white text-emerald-950 px-8 py-4 rounded-2xl font-bold text-base hover:bg-emerald-50 shadow-xl transition-all">
+                    ابدأ تثبيت النظام الآن
                 </a>
-                <a href="https://wa.me/249907722829" target="_blank" class="bg-emerald-800/80 hover:bg-emerald-800 text-white border border-emerald-700 px-8 py-4 rounded-2xl font-bold text-base transition-all inline-flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    تواصل معنا
+                <a href="login.html" class="bg-emerald-800/80 hover:bg-emerald-800 text-white border border-emerald-700 px-8 py-4 rounded-2xl font-bold text-base transition-all">
+                    تسجيل الدخول للنظام
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-         Footer
-         ============================================================ -->
-    <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-900">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2">
                 <div class="p-2 bg-emerald-600 text-white rounded-xl">
                     <i class="fa-solid fa-notes-medical text-sm"></i>
@@ -647,236 +407,24 @@
                 <h1 class="text-lg font-bold text-white tracking-tight">Miracle<span class="text-emerald-500">POS</span></h1>
             </div>
             <p class="text-xs text-slate-500">© 2026 جميع الحقوق محفوظة لنظام MiraclePOS لإدارة الصيدليات.</p>
+            <div class="flex space-x-6 space-x-reverse text-sm">
+                <ul>
+                    <li><a href="#features" class="hover:text-white transition">المميزات</a><br></li>
+                    <li><a href="#modules" class="hover:text-white transition">الخصائص</a><br></li>
+                    <li><a href="#pricing" class="hover:text-white transition">الأسعار</a></li>
+                    <li><a href="login.html" class="hover:text-white transition">الدخول</a><br></li>
+                </ul> 
+            </div>
+            <div class="flex space-x-6 space-x-reverse text-sm">
+                <ul>
+                    <li><a href="faq.html" class="hover:text-white transition">الأسلئلة الاكثر شسوعا FAQ ؟</a><br></li>
+                    <li><a href="legal/eula.html" class="hover:text-white transition">أتفاقية الترخيص</a><br></li>
+                    <li><a href="legal/privacy.html" class="hover:text-white transition">الخصوصية</a><br></li>
+                    <li><a href="legal/terms.html" class="hover:text-white transition">الشروط والأحكام</a><br></li>
+                </ul>
+            </div>
         </div>
     </footer>
-
-    <!-- ============================================================
-         Vue CDN للتفاعلية
-         ============================================================ -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-    <script>
-    const { createApp, ref } = Vue;
-
-    createApp({
-        setup() {
-            const activeCategory = ref('dashboard');
-            const modalImage = ref(null);
-
-            const openImage = (path, label) => {
-                modalImage.value = { path, label };
-            };
-
-            // ============ Dashboard Sub-categories ============
-            const dashboardCategories = [
-                {
-                    key: 'analytics',
-                    label: 'التحليلات',
-                    icon: 'fa-chart-line',
-                    color: 'blue',
-                    images: [
-                        { path: 'assets/dashboard/analytics/1.png', label: 'تحليلات 1' },
-                        { path: 'assets/dashboard/analytics/2.png', label: 'تحليلات 2' },
-                        { path: 'assets/dashboard/analytics/3.png', label: 'تحليلات 3' },
-                        { path: 'assets/dashboard/analytics/4.png', label: 'تحليلات 4' },
-                    ],
-                },
-                {
-                    key: 'medicines',
-                    label: 'إدارة الأدوية',
-                    icon: 'fa-pills',
-                    color: 'emerald',
-                    images: [
-                        { path: 'assets/dashboard/medicines/1.png', label: 'الأدوية 1' },
-                        { path: 'assets/dashboard/medicines/2.png', label: 'الأدوية 2' },
-                    ],
-                },
-                {
-                    key: 'purchases',
-                    label: 'المشتريات',
-                    icon: 'fa-shopping-cart',
-                    color: 'amber',
-                    images: [
-                        { path: 'assets/dashboard/purchases/1.png', label: 'المشتريات 1' },
-                        { path: 'assets/dashboard/purchases/error.png', label: 'تنبيه المشتريات' },
-                    ],
-                },
-                {
-                    key: 'stocktaking',
-                    label: 'الجرد',
-                    icon: 'fa-clipboard-list',
-                    color: 'cyan',
-                    images: [
-                        { path: 'assets/dashboard/stocktaking/1.png', label: 'الجرد 1' },
-                        { path: 'assets/dashboard/stocktaking/2.png', label: 'الجرد 2' },
-                    ],
-                },
-                {
-                    key: 'shifts',
-                    label: 'الورديات',
-                    icon: 'fa-user-clock',
-                    color: 'violet',
-                    images: [
-                        { path: 'assets/dashboard/shifts/1.png', label: 'الورديات 1' },
-                        { path: 'assets/dashboard/shifts/2.png', label: 'الورديات 2' },
-                    ],
-                },
-                {
-                    key: 'debts',
-                    label: 'الديون',
-                    icon: 'fa-hand-holding-usd',
-                    color: 'red',
-                    images: [
-                        { path: 'assets/dashboard/debts/1.png', label: 'الديون 1' },
-                        { path: 'assets/dashboard/debts/2.png', label: 'الديون 2' },
-                        { path: 'assets/dashboard/debts/3.png', label: 'الديون 3' },
-                    ],
-                },
-                {
-                    key: 'expenses',
-                    label: 'المصروفات',
-                    icon: 'fa-receipt',
-                    color: 'orange',
-                    images: [
-                        { path: 'assets/dashboard/expenses/1.png', label: 'المصروفات 1' },
-                        { path: 'assets/dashboard/expenses/2.png', label: 'المصروفات 2' },
-                    ],
-                },
-                {
-                    key: 'salaries',
-                    label: 'الرواتب',
-                    icon: 'fa-money-bill-wave',
-                    color: 'teal',
-                    images: [
-                        { path: 'assets/dashboard/salaries/1.png', label: 'الرواتب 1' },
-                        { path: 'assets/dashboard/salaries/2.png', label: 'الرواتب 2' },
-                        { path: 'assets/dashboard/salaries/3.png', label: 'الرواتب 3' },
-                    ],
-                },
-                {
-                    key: 'pricing_engine',
-                    label: 'محرك الأسعار',
-                    icon: 'fa-tags',
-                    color: 'indigo',
-                    images: [
-                        { path: 'assets/dashboard/pricing_engine/1.png', label: 'التسعير 1' },
-                        { path: 'assets/dashboard/pricing_engine/2.png', label: 'التسعير 2' },
-                        { path: 'assets/dashboard/pricing_engine/3.png', label: 'التسعير 3' },
-                        { path: 'assets/dashboard/pricing_engine/edit_prices.png', label: 'تعديل الأسعار' },
-                    ],
-                },
-                {
-                    key: 'reports',
-                    label: 'التقارير',
-                    icon: 'fa-chart-bar',
-                    color: 'sky',
-                    images: [
-                        { path: 'assets/dashboard/reports/1.png', label: 'التقارير 1' },
-                        { path: 'assets/dashboard/reports/2.png', label: 'التقارير 2' },
-                    ],
-                },
-                {
-                    key: 'branches',
-                    label: 'الفروع',
-                    icon: 'fa-code-branch',
-                    color: 'slate',
-                    images: [
-                        { path: 'assets/dashboard/branches/1.png', label: 'الفروع' },
-                    ],
-                },
-                {
-                    key: 'categories',
-                    label: 'التصنيفات',
-                    icon: 'fa-tags',
-                    color: 'pink',
-                    images: [
-                        { path: 'assets/dashboard/categories/1.png', label: 'التصنيفات' },
-                    ],
-                },
-                {
-                    key: 'suppliers',
-                    label: 'الموردين',
-                    icon: 'fa-truck',
-                    color: 'lime',
-                    images: [
-                        { path: 'assets/dashboard/suppliers/1.png', label: 'الموردين' },
-                    ],
-                },
-                {
-                    key: 'users',
-                    label: 'المستخدمين',
-                    icon: 'fa-users',
-                    color: 'fuchsia',
-                    images: [
-                        { path: 'assets/dashboard/users/1.png', label: 'المستخدمين' },
-                    ],
-                },
-                {
-                    key: 'logs',
-                    label: 'سجل التدقيق',
-                    icon: 'fa-clipboard-check',
-                    color: 'stone',
-                    images: [
-                        { path: 'assets/dashboard/logs/1.png', label: 'السجل 1' },
-                        { path: 'assets/dashboard/logs/2.png', label: 'السجل 2' },
-                    ],
-                },
-                {
-                    key: 'settings',
-                    label: 'الإعدادات',
-                    icon: 'fa-cog',
-                    color: 'neutral',
-                    images: [
-                        { path: 'assets/dashboard/settings/1.png', label: 'الإعدادات 1' },
-                        { path: 'assets/dashboard/settings/2.png', label: 'الإعدادات 2' },
-                        { path: 'assets/dashboard/settings/3.png', label: 'الإعدادات 3' },
-                        { path: 'assets/dashboard/settings/4.png', label: 'الإعدادات 4' },
-                    ],
-                },
-                {
-                    key: 'backup_restore',
-                    label: 'النسخ الاحتياطي',
-                    icon: 'fa-database',
-                    color: 'zinc',
-                    images: [
-                        { path: 'assets/dashboard/backup_restore/1.png', label: 'نسخ احتياطي 1' },
-                        { path: 'assets/dashboard/backup_restore/2.png', label: 'نسخ احتياطي 2' },
-                    ],
-                },
-            ];
-
-            // ============ POS Images ============
-            const posImages = [
-                { path: 'assets/pos/index.png',                label: 'الواجهة الرئيسية' },
-                { path: 'assets/pos/login.png',                label: 'تسجيل الدخول' },
-                { path: 'assets/pos/install.png',              label: 'التثبيت' },
-                { path: 'assets/pos/open_shift.png',           label: 'فتح الوردية' },
-                { path: 'assets/pos/pos_medicines_search.png', label: 'البحث عن دواء' },
-                { path: 'assets/pos/cart_full.png',            label: 'السلة ممتلئة' },
-                { path: 'assets/pos/auto_print_bill.png',      label: 'طباعة تلقائية' },
-                { path: 'assets/pos/bank_sale.png',            label: 'بيع بنكي' },
-                { path: 'assets/pos/return_bill.png',          label: 'إرجاع فاتورة' },
-                { path: 'assets/pos/close_shift.png',          label: 'إغلاق الوردية' },
-                { path: 'assets/pos/add_expense.png',          label: 'إضافة مصروف' },
-                { path: 'assets/pos/add_withdraw.png',         label: 'سحب نقدي' },
-                { path: 'assets/pos/confirm_pin.png',          label: 'تأكيد PIN' },
-                { path: 'assets/pos/mobile_first_search.png',  label: 'البحث (موبايل)' },
-                { path: 'assets/pos/mobile_first_cart.png',    label: 'السلة (موبايل)' },
-                { path: 'assets/pos/mobile_first_sales.png',   label: 'المبيعات (موبايل)' },
-                { path: 'assets/pos/Wifi_connect_network.png', label: 'اتصال WiFi (شبكة)' },
-                { path: 'assets/pos/Wifi_connect_manual.png',  label: 'اتصال WiFi (يدوي)' },
-            ];
-
-            return {
-                activeCategory,
-                modalImage,
-                openImage,
-                dashboardCategories,
-                posImages,
-            };
-        }
-    }).mount('#preview');
-    </script>
 
 </body>
 </html>
